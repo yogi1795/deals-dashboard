@@ -65,35 +65,11 @@ fig_value = px.bar(
     title="Total Value (AUD) by Status"
 )
 
-# --- Scrollable Horizontal Layout (Mobile-Friendly) ---
-st.markdown(
-    """
-    <style>
-    .scroll-container {
-        display: flex;
-        overflow-x: auto;
-        gap: 20px;
-        padding-bottom: 10px;
-    }
-    .chart-box {
-        min-width: 400px;
-        flex-shrink: 0;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+# --- Horizontal Layout with st.columns ---
+col1, col2 = st.columns(2)
 
-st.markdown('<div class="scroll-container">', unsafe_allow_html=True)
-
-with st.container():
-    st.markdown('<div class="chart-box">', unsafe_allow_html=True)
+with col1:
     st.plotly_chart(fig_count, use_container_width=True)
-    st.markdown('</div>', unsafe_allow_html=True)
 
-with st.container():
-    st.markdown('<div class="chart-box">', unsafe_allow_html=True)
+with col2:
     st.plotly_chart(fig_value, use_container_width=True)
-    st.markdown('</div>', unsafe_allow_html=True)
-
-st.markdown('</div>', unsafe_allow_html=True)
